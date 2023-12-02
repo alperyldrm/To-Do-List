@@ -1,9 +1,8 @@
 let newTaskDOM = document.querySelector('#liveToastBtn');
 //newTaskDOM.addEventListener("click", newElement);
 
-let completeTaskDOM = document.querySelector("li");
+let completeTaskDOM = document.querySelector("li")
 completeTaskDOM.addEventListener("click", completeTask);
-
 
 
 function newElement(){
@@ -15,13 +14,13 @@ function newElement(){
             //uyarı eklenecek
     }else{
         liDOM.innerHTML = newTask
+        liDOM.className = "Unchecked"
         ulDOM.append(liDOM)
         document.querySelector("#task").value = "" //searchü temizleme
     }
 }
 
 function completeTask(){
-    
     this.style.setProperty("text-decoration", "line-through");
     this.style.backgroundColor = "blue"
 }
