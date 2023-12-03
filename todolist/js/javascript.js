@@ -1,10 +1,3 @@
-let newTaskDOM = document.querySelector('#liveToastBtn');
-//newTaskDOM.addEventListener("click", newElement);
-
-let completeTaskDOM = document.querySelector("li")
-completeTaskDOM.addEventListener("click", completeTask);
-
-
 function newElement(){
     var newTask = document.querySelector("#task").value; //searchteki taski alma
     var trimmedTask = newTask.trim() // boşluklardan arındırma
@@ -14,13 +7,28 @@ function newElement(){
             //uyarı eklenecek
     }else{
         liDOM.innerHTML = newTask
-        liDOM.className = "Unchecked"
         ulDOM.append(liDOM)
-        document.querySelector("#task").value = "" //searchü temizleme
+        document.querySelector("#task").value = "" //searchü temizleme,
+        const DLTSPN = document.createElement("span");         // Delete butonu ekleme  
+        DLTSPN.innerHTML = "&times;";
+        DLTSPN.classList.add("close");
+        DLTSPN.addEventListener("click", () => removeElement(liDOM));
+        liDOM.appendChild(DLTSPN);
+        liDOM.addEventListener("click", () => {         // Tıklanan li'ye checked classı ekleme
+        if (liDOM.classList.contains("checked")) liDOM.classList.remove("checked");
+        else liDOM.classList.add("checked");
+  });
     }
 }
+  
 
-function completeTask(){
-    this.style.setProperty("text-decoration", "line-through");
-    this.style.backgroundColor = "blue"
-}
+document.querySelectorAll('#list > li').forEach((item) => {
+item.addEventListener("click", () => {
+    if (item.classList.contains('checked')) item.classList.remove('checked');
+    else item.classList.add("checked");
+  });
+});
+
+const removeElement = (element) => {
+    element.remove();
+  };
